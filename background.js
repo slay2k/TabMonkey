@@ -1,5 +1,5 @@
 var keymap = {};
-var prev, curr;
+var prevTab, currentTab;
 
 function msg(title, msg, timeout) {
   var notification = webkitNotifications.createNotification('icon.png', title, msg);
@@ -9,38 +9,33 @@ function msg(title, msg, timeout) {
 
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
-    /*console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");*/
-    var a = request.action;
-    if (a == "mark") {
+    if (request.action == "mark") {
       chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
-        // console.dir(tab);
         keymap[request.key] = tab[0].id;
         msg('Tab Monkey', 'Marking this tab as #' + String.fromCharCode(request.key));
       });
     }
-    else if (a == "jump") {
+    else if (request.action  == "jump") {
       if (request.key in keymap) {
         chrome.tabs.update(keymap[request.key], {active: true});
       }
     }
-    else if (a == "last") {
-      if (prev) {
-        chrome.tabs.update(prev, {active: true});
+    else if (request.action == "last") {
+      if (prevTab) {
+        chrome.tabs.update(prevTab, {active: true});
       }
     }
 });
 
-chrome.tabs.onSelectionChanged.addListener(function(tab) {
-  if (prev == null) {
-    prev = tab;
+chrome.tabs.onSelectionChanged.addListener(function(newTab) {
+  if (prevTab == null) {
+    prevTab = newTab;
   }
 
-  if (curr == null) {
-    curr = tab;
+  if (currentTab == null) {
+    currentTab = newTab;
   } else {
-    prev = curr;
-    curr = tab;
+    prevTab = currentTab;
+    currentTab = newTab;
   }
 });

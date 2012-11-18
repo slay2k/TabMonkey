@@ -1,8 +1,8 @@
 {
-  "name": "TabMonkey",
+  "name": "Tab Monkey",
   "version": "0.2",
   "manifest_version": 2,
-  "description": "Add keyboard shortcuts for quick tab navigation. Cmd-Alt-1 thru Cmd-Alt-9 to set, Cmd-1 thru Cmd-9 to jump. Cmd-B to switch between last two tabs.",
+  "description": "Quick tab navigation. CMD-ALT-1 to CMD-ALT-9 to bookmark, CMD-1 thru CMD-9 to jump. Cmd-B to switch between last two tabs.",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
