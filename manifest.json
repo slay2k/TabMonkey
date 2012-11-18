@@ -1,0 +1,22 @@
+{
+  "name": "TabMonkey",
+  "version": "0.2",
+  "manifest_version": 2,
+  "description": "Add keyboard shortcuts for quick tab navigation. Cmd-Alt-1 thru Cmd-Alt-9 to set, Cmd-1 thru Cmd-9 to jump. Cmd-B to switch between last two tabs.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+      "scripts": ["background.js"]
+  },
+  "permissions": [
+    "tabs",
+    "notifications"
+  ],
+  "web_accessible_resources": [
+    "icon.png"
+  ]
+}
