@@ -1,8 +1,8 @@
 {
   "name": "Tab Monkey",
-  "version": "0.2",
+  "version": "0.2.1",
   "manifest_version": 2,
-  "description": "Quick tab navigation. CMD-ALT-1 to CMD-ALT-9 to bookmark, CMD-1 thru CMD-9 to jump. Cmd-B to switch between last two tabs.",
+  "description": "Quick tab navigation. Cmd-B switches to last tab, Cmd-Alt-1 thru 9 to bookmark, Cmd-1 thru 9 to jump.",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
